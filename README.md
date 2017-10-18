@@ -7,9 +7,17 @@
 | Features |  |
 |---|---|
 | **OS** | `ubuntu` |
-| **General** | `git`, `vim`, `curl`, `docker` |
+| **General** | `git`, `vim`, `curl` |
+| **Cloud** | `aws`, `docker` |
 | **JavaScript**  | `node`, `npm`, `yarn`, `n`, `typescript`  |
 
+#### Volumes
+| mount point |  |
+|---|---|
+| `/home/dev/.bash_profile` | sourced at startup |
+| `/home/dev/.ssh` | ssh keys |
+| `/home/dev/.aws` | aws config |
+| `/var/run/docker.sock` | docker socket |
 
 #### Examples
 ```shell
@@ -23,12 +31,12 @@ $ docker run -it colbydauph/devbox;
 # visit chrome://inspect
 $ docker run -it -p 9229:9229 colbydauph/devbox node --inspect=0.0.0.0:9229;
 
-# Share bash profile
-$ docker run -it -v ~/.bash_profile:/home/dev/.bash_profile:ro colbydauph/devbox;
-
-# Share ssh keys
-$ docker run -it -v ~/.ssh:/home/dev/.ssh:ro colbydauph/devbox;
-
-# Access host docker
-$ docker run -it -v /var/run/docker.sock:/var/run/docker.sock colbydauph/devbox;
+# Kitchen sink
+$ docker run -it \
+  -p 9229:9229 \
+  -v ~/.bash_profile:/home/dev/.bash_profile:ro \
+  -v ~/.ssh:/home/dev/.ssh:ro \
+  -v ~/.aws:/home/dev/.aws:ro \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  colbydauph/devbox;
 ```

@@ -10,6 +10,7 @@ RUN apt-get update -yq && \
       docker.io \
       git \
       sudo \
+      unzip \
       vim \
       && rm -rf /var/lib/apt/lists/*;
 
@@ -29,14 +30,16 @@ RUN npm install -g typescript
 
 # install n (node version manager)
 RUN npm install -g n
-RUN n latest
+RUN n latest -q
 
 # add dev user
 RUN useradd dev
 # setup home
-RUN mkdir /home/dev && chown -R dev: /home/dev
+RUN mkdir /home/dev /home/dev/bin && chown -R dev: /home/dev && chown -R dev: /home/dev/bin
 ENV HOME /home/dev
+ENV PATH $PATH:/home/dev/bin
 # ADD gitconfig /home/dev/.gitconfig
+USER dev
 
 COPY start.sh /.start.sh
 
@@ -48,7 +51,12 @@ VOLUME /home/dev/.ssh \
 # node debugger
 EXPOSE 9229
 
-USER dev
 RUN git init
+
+# install aws cli
+RUN curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip" && \
+    unzip -q awscli-bundle.zip && \
+    ./awscli-bundle/install -b ~/bin/aws && \
+    rm -R awscli-bundle.zip ./awscli-bundle;
 
 CMD ["/bin/bash", "/.start.sh"] 
