@@ -4,20 +4,21 @@ This is my personal development environment. It contains many of the tools I use
 
 Docker Image: [`colbydauph/devbox`](https://hub.docker.com/r/colbydauph/devbox)
 
-| software |  |
-|---|---|
-| **OS** | `ubuntu` |
-| **General** | `git`, `vim`, `curl` |
-| **Cloud** | `aws`, `docker` |
-| **JavaScript**  | `node`, `npm`, `yarn`, `n`, `typescript`  |
+#### Software
+```
+os      - ubuntu
+general - curl, git, vim
+util    - unzip, zip
+cloud   - aws, docker
+js      - node, npm, n, typescript, yarn
+```
 
 #### Mount Points
 | path |  |
 |---|---|
+| `/home/dev/.aws` | [aws config](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) |
 | `/home/dev/.bash_profile` | sourced at startup |
 | `/home/dev/.ssh` | ssh keys |
-| `/home/dev/.aws` | aws config |
-| `/var/run/docker.sock` | docker socket |
 
 #### Examples
 ```shell
@@ -34,9 +35,8 @@ $ docker run -it -p 9229:9229 colbydauph/devbox node --inspect=0.0.0.0:9229;
 # Kitchen sink
 $ docker run -it \
   -p 9229:9229 \
+  -v ~/.aws:/home/dev/.aws:ro \
   -v ~/.bash_profile:/home/dev/.bash_profile:ro \
   -v ~/.ssh:/home/dev/.ssh:ro \
-  -v ~/.aws:/home/dev/.aws:ro \
-  -v /var/run/docker.sock:/var/run/docker.sock \
   colbydauph/devbox;
 ```

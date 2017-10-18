@@ -12,6 +12,7 @@ RUN apt-get update -yq && \
       sudo \
       unzip \
       vim \
+      zip \
       && rm -rf /var/lib/apt/lists/*;
 
 # install yarn
@@ -45,8 +46,9 @@ COPY start.sh /.start.sh
 
 WORKDIR /home/dev
 
-VOLUME /home/dev/.ssh \
-       /var/run/docker.sock
+VOLUME /home/dev/.aws \
+       /home/dev/.bash_profile \
+       /home/dev/.ssh
 
 # node debugger
 EXPOSE 9229
