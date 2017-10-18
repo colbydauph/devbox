@@ -3,13 +3,15 @@ FROM ubuntu:latest
 LABEL maintainer="colby@dauphina.is"
 
 # install linux packages
-RUN apt-get update -yq
-RUN apt-get install -yq git
-RUN apt-get install -yq sudo
-RUN apt-get install -yq vim
-RUN apt-get install -yq curl
-RUN apt-get install -yq apt-transport-https
-RUN apt-get install -yq docker.io
+RUN apt-get update -yq && \
+    apt-get install -yq \
+      apt-transport-https \
+      curl \
+      docker.io \
+      git \
+      sudo \
+      vim \
+      && rm -rf /var/lib/apt/lists/*;
 
 # install yarn
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -18,8 +20,7 @@ RUN apt-get update -yq && apt-get install -yq yarn
 
 # install node 8 + npm
 RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-RUN apt-get install -yq nodejs
-RUN apt-get install -yq build-essential
+RUN apt-get install -yq nodejs build-essential
 # update npm
 RUN yarn global add npm
 
