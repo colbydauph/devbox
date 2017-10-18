@@ -36,13 +36,14 @@ RUN useradd dev
 # setup home
 RUN mkdir /home/dev && chown -R dev: /home/dev
 ENV HOME /home/dev
-COPY bash_profile /home/dev/.bash_profile
 # ADD gitconfig /home/dev/.gitconfig
+
+COPY start.sh /.start.sh
 
 WORKDIR /home/dev
 
-VOLUME /home/dev/.ssh
-VOLUME /var/run/docker.sock
+VOLUME /home/dev/.ssh \
+       /var/run/docker.sock
 
 # node debugger
 EXPOSE 9229
@@ -50,5 +51,4 @@ EXPOSE 9229
 USER dev
 RUN git init
 
-CMD /bin/bash -c "source ~/.bash_profile; /bin/bash"
-
+CMD ["/bin/bash", "/.start.sh"] 

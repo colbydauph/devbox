@@ -19,11 +19,14 @@ $ docker build -t colbydauph/devbox .;
 # Run
 $ docker run -it colbydauph/devbox;
 
-# Debug Node
+# Debug node
 # visit chrome://inspect
 $ docker run -it -p 9229:9229 colbydauph/devbox node --inspect=0.0.0.0:9229;
 
-# Share SSH Keys
+# Share bash profile
+$ docker run -it -v ~/.bash_profile:/home/dev/.bash_profile:ro colbydauph/devbox;
+
+# Share ssh keys
 $ docker run -it -v ~/.ssh:/home/dev/.ssh:ro colbydauph/devbox;
 
 # Access host docker
