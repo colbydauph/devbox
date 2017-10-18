@@ -1,18 +1,18 @@
 ## devbox
 
-#### Personal Development Environment
+This is my personal development environment. It contains many of the tools I use for software development.
 
-[Docker Image](https://hub.docker.com/r/colbydauph/devbox)
+Docker Image: [`colbydauph/devbox`](https://hub.docker.com/r/colbydauph/devbox)
 
-| Features |  |
+| software |  |
 |---|---|
 | **OS** | `ubuntu` |
 | **General** | `git`, `vim`, `curl` |
 | **Cloud** | `aws`, `docker` |
 | **JavaScript**  | `node`, `npm`, `yarn`, `n`, `typescript`  |
 
-#### Volumes
-| mount point |  |
+#### Mount Points
+| path |  |
 |---|---|
 | `/home/dev/.bash_profile` | sourced at startup |
 | `/home/dev/.ssh` | ssh keys |
