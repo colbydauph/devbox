@@ -27,7 +27,12 @@ RUN apt-get install -yq nodejs build-essential
 RUN yarn global add npm
 
 # install typescript
-RUN npm install -g typescript
+RUN npm install -g typescript ts-node
+# fixme: hack until ts-node#4 is released
+# https://github.com/TypeStrong/ts-node/issues/437
+RUN npm install @types/node
+# alias typescript-node to ts
+RUN ln -s $(which ts-node) "$(dirname $(which tsc))/ts"
 
 # install n (node version manager)
 RUN npm install -g n

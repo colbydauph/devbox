@@ -1,6 +1,6 @@
 ## devbox
 
-This is my personal development environment. It contains many of the tools I use for software development.
+This is my personal development environment. It contains some of the tools I use for software development.
 
 Docker Image: [`colbydauph/devbox`](https://hub.docker.com/r/colbydauph/devbox)
 
