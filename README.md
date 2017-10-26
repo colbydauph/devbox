@@ -10,6 +10,7 @@ os      - ubuntu
 general - curl, git, vim
 util    - unzip, zip
 cloud   - aws, docker
+jvm     - java, scala, sbt
 js      - node, npm, n, typescript, yarn
 ```
 
@@ -38,5 +39,6 @@ $ docker run -it \
   -v ~/.aws:/home/dev/.aws:ro \
   -v ~/.bash_profile:/home/dev/.bash_profile:ro \
   -v ~/.ssh:/home/dev/.ssh:ro \
+  -v ~/code:/home/dev/code \
   colbydauph/devbox;
 ```
